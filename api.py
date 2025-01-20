@@ -98,11 +98,14 @@ class UserById(Resource):
 
 class WorkoutResource(Resource):
     @marshal_with(workoutFields)
-    def get(self, workout_id):
-        workout = Workout.query.filter_by(id=workout_id).first()
-        if not workout:
-            abort(404, message="Workout not found")
-        return workout
+    def get(self, workout_id=None):
+        if workout_id is None:
+            abort(404, message="Workout ID is required to get a workout")
+        else:
+            workout = Workout.query.filter_by(id=workout_id).first()
+            if not workout:
+                abort(404, message="Workout not found")
+            return workout
 
     @marshal_with(workoutFields)
     def post(self):
@@ -139,15 +142,28 @@ class UserWorkouts(Resource):
         workouts = Workout.query.filter_by(user_id=user_id).all()
         return workouts
 
+class Help(Resource):
+    def get(self):
+        return {
+            'routes': {
+                '/users': 'POST: Create a new user',
+                '/users/<int:user_id>': 'GET: Get user by ID, PATCH: Update user by ID, DELETE: Delete user by ID',
+                '/users/<int:user_id>/workouts': 'GET: Get all workouts for a user',
+                '/workouts': 'POST: Create a new workout',
+                '/api/workouts/<int:workout_id>': 'GET: Get workout by ID, PATCH: Update workout by ID, DELETE: Delete workout by ID'
+            }
+        }
+
 api.add_resource(Users, '/users')
 api.add_resource(UserById, '/users/<int:user_id>')
 api.add_resource(UserWorkouts, '/users/<int:user_id>/workouts')
-api.add_resource(WorkoutResource, '/workouts', '/api/workouts/<int:workout_id>')
+api.add_resource(WorkoutResource, '/workouts', '/workouts/<int:workout_id>')
+api.add_resource(Help, '/help')
 
 
 @app.route('/')
 def home():
-    return
+    return {'message': 'Welcome to the Workout Tracker API. Visit /help to see the available routes.'}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

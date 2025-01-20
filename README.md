@@ -54,16 +54,16 @@ Endpoints for managing users:
 - **Request Body:**
   ```json
   {
-    "name": "Jane Doe",
-    "email": "jane.doe@example.com"
+    "name": "John Doe",
+    "email": "john.doe@example.com"
   }
   ```
 - **Response:**
   ```json
   {
     "id": 1,
-    "name": "Jane Doe",
-    "email": "jane.doe@example.com"
+    "name": "John Doe",
+    "email": "john.doe@example.com"
   }
   ```
 

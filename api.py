@@ -164,6 +164,3 @@ api.add_resource(Help, '/help')
 @app.route('/')
 def home():
     return {'message': 'Welcome to the Workout Tracker API. Visit /help to see the available routes.'}
-
-if __name__ == '__main__':
-    app.run(debug=False)

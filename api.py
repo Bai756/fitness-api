@@ -42,8 +42,8 @@ class Workout(db.Model):
     
 workout_args = reqparse.RequestParser()
 workout_args.add_argument('user_id', type=int, help='User ID', required=True)
-workout_args.add_argument('type', type=str, help='Type of workout', required=True)
-workout_args.add_argument('duration', type=int, help='Duration of workout', required=True)
+workout_args.add_argument('type', type=str, help='Type of workout (e.g. running)', required=True)
+workout_args.add_argument('duration', type=int, help='Duration of workout in minutes', required=True)
 workout_args.add_argument('calories', type=int, help='Calories burned', required=True)
 
 workoutFields = {
@@ -139,37 +139,15 @@ class UserWorkouts(Resource):
         workouts = Workout.query.filter_by(user_id=user_id).all()
         return workouts
 
-api.add_resource(Users, '/api/users')
-api.add_resource(UserById, '/api/users/<int:user_id>')
-api.add_resource(UserWorkouts, '/api/users/<int:user_id>/workouts')
-api.add_resource(WorkoutResource, '/api/workouts', '/api/workouts/<int:workout_id>')
+api.add_resource(Users, '/users')
+api.add_resource(UserById, '/users/<int:user_id>')
+api.add_resource(UserWorkouts, '/users/<int:user_id>/workouts')
+api.add_resource(WorkoutResource, '/workouts', '/api/workouts/<int:workout_id>')
 
 
 @app.route('/')
 def home():
-    return '''
-    <h1>Fitness API</h1>
-    <p>Available Endpoints:</p>
-    <ul>
-        <li><b>Users:</b>
-            <ul>
-                <li>POST /api/users - Create a new user</li>
-                <li>GET /api/users/&lt;user_id&gt; - Get a user by ID</li>
-                <li>PATCH /api/users/&lt;user_id&gt; - Update a user</li>
-                <li>DELETE /api/users/&lt;user_id&gt; - Delete a user</li>
-            </ul>
-        </li>
-        <li><b>Workouts:</b>
-            <ul>
-                <li>GET /api/workout/&lt;workout_id&gt; - Retrieve a specific workout</li>
-                <li>POST /api/workout - Create a new workout</li>
-                <li>PUT /api/workout/&lt;workout_id&gt; - Update a workout</li>
-                <li>DELETE /api/workout/&lt;workout_id&gt; - Delete a workout</li>
-                <li>GET /api/users/&lt;user_id&gt;/workouts - Retrieve all workouts for a user</li>
-            </ul>
-        </li>
-    </ul>
-    '''
+    return
 
 if __name__ == '__main__':
     app.run(debug=True)

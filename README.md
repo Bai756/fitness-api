@@ -7,13 +7,88 @@ Welcome to the Fitness API! This API enables you to manage users and track their
 ## **Base URL**
 The API is hosted at:
 ```
-http://<your-domain>
+https://bai756.pythonanywhere.com/
 ```
 
 ---
 
 ## **Endpoints Overview**
 
+### **Challenges**
+
+**GET** `/challenges`
+- **Description:** Fetches all a challenge.
+- **Response:**
+  ```json
+  { 
+    "id": 1, "challenge": "50 pushups"
+  }
+  ```
+
+#### **Create a Daily Challenge**
+**POST** `/challenges`
+- **Description:** Creates a new daily challenge.
+- **Request Body:**
+  ```json
+  {
+    "title": "10,000 Steps",
+    "description": "Walk 10,000 steps in a day",
+    "reward_points": 50
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "id": 1,
+    "title": "10,000 Steps",
+    "description": "Walk 10,000 steps in a day",
+    "reward_points": 50
+  }
+  ```
+
+#### **Retrieve a Daily Challenge**
+**GET** `/challenges/:id`
+- **Description:** Fetches details of a specific daily challenge.
+- **Response:**
+  ```json
+  {
+    "id": 1,
+    "title": "10,000 Steps",
+    "description": "Walk 10,000 steps in a day",
+    "reward_points": 50
+  }
+  ```
+
+#### **Update a Daily Challenge**
+**PATCH** `/challenges/:id`
+- **Description:** Updates details of a specific daily challenge.
+- **Request Body:**
+  ```json
+  {
+    "title": "15,000 Steps",
+    "description": "Walk 15,000 steps in a day",
+    "reward_points": 75
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "id": 1,
+    "title": "15,000 Steps",
+    "description": "Walk 15,000 steps in a day",
+    "reward_points": 75
+  }
+  ```
+
+#### **Delete a Daily Challenge**
+**DELETE** `/challenges/:id`
+- **Description:** Deletes a daily challenge by its ID.
+- **Response:**
+  ```json
+  {
+    "message": "Challenge deleted"
+  }
+  ```
 ### **Users**
 Endpoints for managing users:
 
@@ -172,27 +247,6 @@ Endpoints for managing workouts:
   ```json
   {
     "message": "Workout deleted"
-  }
-  ```
-
----
-
-## **Error Handling**
-
-### Common Error Responses
-- **400 Bad Request:**
-  - Missing or invalid parameters.
-  ```json
-  {
-    "message": "A user with this email already exists."
-  }
-  ```
-
-- **404 Not Found:**
-  - Resource not found.
-  ```json
-  {
-    "message": "User not found"
   }
   ```
 

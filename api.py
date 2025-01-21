@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
+import json
+from random import randint
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -142,6 +144,12 @@ class UserWorkouts(Resource):
         workouts = Workout.query.filter_by(user_id=user_id).all()
         return workouts
 
+class DailyChallenge(Resource):
+    def get(self):
+        with open('challenges.json', 'r') as f:
+            data = json.load(f)
+        return data[randint(0, len(data)-1)]
+
 class Help(Resource):
     def get(self):
         return {
@@ -150,7 +158,8 @@ class Help(Resource):
                 '/users/<int:user_id>': 'GET: Get user by ID, PATCH: Update user by ID, DELETE: Delete user by ID',
                 '/users/<int:user_id>/workouts': 'GET: Get all workouts for a user',
                 '/workouts': 'POST: Create a new workout',
-                '/api/workouts/<int:workout_id>': 'GET: Get workout by ID, PATCH: Update workout by ID, DELETE: Delete workout by ID'
+                '/api/workouts/<int:workout_id>': 'GET: Get workout by ID, PATCH: Update workout by ID, DELETE: Delete workout by ID',
+                '/challenges': 'GET: Get a random daily challenge'
             }
         }
 
@@ -159,8 +168,12 @@ api.add_resource(UserById, '/users/<int:user_id>')
 api.add_resource(UserWorkouts, '/users/<int:user_id>/workouts')
 api.add_resource(WorkoutResource, '/workouts', '/workouts/<int:workout_id>')
 api.add_resource(Help, '/help')
+api.add_resource(DailyChallenge, '/challenges')
 
 
 @app.route('/')
 def home():
     return {'message': 'Welcome to the Workout Tracker API. Visit /help to see the available routes.'}
+
+if __name__ == '__main__':
+    app.run(debug=True)

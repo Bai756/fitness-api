@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness API Documentation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Fitness API Documentation</h1>
+    </header>
+    <div class="container">
+        <section id="overview">
+            <h2>URL</h2>
+            <p>The API is hosted at:</p>
+            <pre><a href="https://bai756.pythonanywhere.com/">https://bai756.pythonanywhere.com/</a></pre>
+        <section id="endpoints-overview">
+            <h2>Endpoints Overview</h2>
+            <article id="challenges">
+                <h3>Challenges</h3>
+                <h4>Get a Challenge</h4>
+                <pre><code>GET /challenges</code></pre>
+                <p><strong>Description:</strong> Fetches a challenge.</p>
+                <pre><code>{
+    "id": 1,
+    "challenge": "50 pushups"
+}</code></pre>
+            </article>
+
+            <article id="users">
+                <h3>Users</h3>
+                <h4>Create a User</h4>
+                <pre><code>POST /users</code></pre>
+                <p><strong>Description:</strong> Creates a new user.</p>
+                <p><strong>Request Body:</strong></p>
+                <pre><code>{
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+}</code></pre>
+                <p><strong>Response:</strong></p>
+                <pre><code>{
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+}</code></pre>
+
+                <h4>Retrieve a User</h4>
+                <pre><code>GET /users/:id</code></pre>
+                <p><strong>Description:</strong> Fetches details of a specific user.</p>
+                <pre><code>{
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+}</code></pre>
+
+                <h4>Update a User</h4>
+                <pre><code>PATCH /users/:id</code></pre>
+                <p><strong>Description:</strong> Updates the details of an existing user.</p>
+                <p><strong>Request Body:</strong></p>
+                <pre><code>{
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+}</code></pre>
+                <p><strong>Response:</strong></p>
+                <pre><code>{
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+}</code></pre>
+
+                <h4>Delete a User</h4>
+                <pre><code>DELETE /users/:id</code></pre>
+                <p><strong>Description:</strong> Deletes a user by their ID.</p>
+                <pre><code>{
+    "message": "User deleted successfully"
+}</code></pre>
+            </article>
+            <article id="workouts">
+                <h3>Workouts</h3>
+                <h4>Retrieve All Workouts for a User</h4>
+                <pre><code>GET /users/:user_id/workouts</code></pre>
+                <p><strong>Description:</strong> Fetches all workouts for a specific user.</p>
+                <pre><code>[
+    {
+        "id": 1,
+        "user_id": 1,
+        "type": "Running",
+        "duration": 30,
+        "calories": 300
+    },
+    {
+        "id": 2,
+        "user_id": 1,
+        "type": "Cycling",
+        "duration": 45,
+        "calories": 450
+    }
+]</code></pre>
+
+                <h4>Create a Workout</h4>
+                <pre><code>POST /workouts</code></pre>
+                <p><strong>Description:</strong> Creates a new workout.</p>
+                <p><strong>Request Body:</strong></p>
+                <pre><code>{
+    "user_id": 1,
+    "type": "Running",
+    "duration": 30,
+    "calories": 300
+}</code></pre>
+                <p><strong>Response:</strong></p>
+                <pre><code>{
+    "id": 1,
+    "user_id": 1,
+    "type": "Running",
+    "duration": 30,
+    "calories": 300
+}</code></pre>
+
+                <h4>Retrieve a Workout</h4>
+                <pre><code>GET /workouts/:id</code></pre>
+                <p><strong>Description:</strong> Fetches details of a specific workout.</p>
+                <pre><code>{
+    "id": 1,
+    "user_id": 1,
+    "type": "Running",
+    "duration": 30,
+    "calories": 300
+}</code></pre>
+
+                <h4>Update a Workout</h4>
+                <pre><code>PATCH /workouts/:id</code></pre>
+                <p><strong>Description:</strong> Updates details of a specific workout.</p>
+                <p><strong>Request Body:</strong></p>
+                <pre><code>{
+    "user_id": 1,
+    "type": "Cycling",
+    "duration": 45,
+    "calories": 450
+}</code></pre>
+                <p><strong>Response:</strong></p>
+                <pre><code>{
+    "id": 1,
+    "user_id": 1,
+    "type": "Cycling",
+    "duration": 45,
+    "calories": 450
+}</code></pre>
+
+                <h4>Delete a Workout</h4>
+                <pre><code>DELETE /workouts/:id</code></pre>
+                <p><strong>Description:</strong> Deletes a workout by its ID.</p>
+                <pre><code>{
+    "message": "Workout deleted"
+}</code></pre>
+            </article>
+        </section>
+    </div>
+</body>
+</html>

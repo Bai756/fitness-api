@@ -9,84 +9,24 @@ The API is hosted at:
 ```
 https://bai756.pythonanywhere.com/
 ```
-
+Use if you want to curl
+```bash
+curl https://bai756.pythonanywhere.com/
+```
+Otherwise, just go to the site
 ---
+
 
 ## **Endpoints Overview**
 
 ### **Challenges**
 
 **GET** `/challenges`
-- **Description:** Fetches all a challenge.
+- **Description:** Fetches a challenge.
 - **Response:**
   ```json
   { 
     "id": 1, "challenge": "50 pushups"
-  }
-  ```
-
-#### **Create a Daily Challenge**
-**POST** `/challenges`
-- **Description:** Creates a new daily challenge.
-- **Request Body:**
-  ```json
-  {
-    "title": "10,000 Steps",
-    "description": "Walk 10,000 steps in a day",
-    "reward_points": 50
-  }
-  ```
-- **Response:**
-  ```json
-  {
-    "id": 1,
-    "title": "10,000 Steps",
-    "description": "Walk 10,000 steps in a day",
-    "reward_points": 50
-  }
-  ```
-
-#### **Retrieve a Daily Challenge**
-**GET** `/challenges/:id`
-- **Description:** Fetches details of a specific daily challenge.
-- **Response:**
-  ```json
-  {
-    "id": 1,
-    "title": "10,000 Steps",
-    "description": "Walk 10,000 steps in a day",
-    "reward_points": 50
-  }
-  ```
-
-#### **Update a Daily Challenge**
-**PATCH** `/challenges/:id`
-- **Description:** Updates details of a specific daily challenge.
-- **Request Body:**
-  ```json
-  {
-    "title": "15,000 Steps",
-    "description": "Walk 15,000 steps in a day",
-    "reward_points": 75
-  }
-  ```
-- **Response:**
-  ```json
-  {
-    "id": 1,
-    "title": "15,000 Steps",
-    "description": "Walk 15,000 steps in a day",
-    "reward_points": 75
-  }
-  ```
-
-#### **Delete a Daily Challenge**
-**DELETE** `/challenges/:id`
-- **Description:** Deletes a daily challenge by its ID.
-- **Response:**
-  ```json
-  {
-    "message": "Challenge deleted"
   }
   ```
 ### **Users**

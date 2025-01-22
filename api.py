@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 import json
@@ -173,8 +173,11 @@ api.add_resource(DailyChallenge, '/challenges')
 
 @app.route('/')
 def home():
-    return {'message': 'Welcome to the Workout Tracker API. Visit /help to see the available routes.'}
+    if request.headers.get('Accept') == '*/*':
+        return {'message': 'Welcome to the Workout Tracker API. Visit /help to see the available routes.'}
+    else:
+        return render_template('documentation.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-    

@@ -210,7 +210,7 @@ Endpoints for managing workouts:
 |------------|----------|-----------------------------|
 | `id`       | Integer  | Unique workout ID           |
 | `user_id`  | Integer  | ID of the associated user   |
-| `type`     | String   | Type of workout (e.g., Running) |
+| `type`     | String   | Type of workout (e.g., running) |
 | `duration` | Integer  | Duration of workout in minutes |
 | `calories` | Integer  | Calories burned during workout |
 

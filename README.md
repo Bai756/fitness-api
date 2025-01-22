@@ -9,11 +9,15 @@ The API is hosted at:
 ```
 https://bai756.pythonanywhere.com/
 ```
-Use if you want to curl
+
+If you want to curl, use:
 ```bash
 curl https://bai756.pythonanywhere.com/
 ```
-Otherwise, just go to the site
+To see the documentation go to:
+```
+https://bai756.pythonanywhere.com/
+```
 ---
 
 
